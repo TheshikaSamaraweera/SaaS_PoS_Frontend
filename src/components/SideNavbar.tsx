@@ -12,7 +12,8 @@ import {
   UsersRound,
   Settings,
   ChevronRight,
-  ReceiptIcon
+  Building,
+  Calculator
 } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -50,7 +51,6 @@ export default function SideNavbar({}: Props) {
             icon: LayoutDashboard,
             variant: "default"
           },
-          
           {
             title: "Users",
             href: "/users",
@@ -64,23 +64,24 @@ export default function SideNavbar({}: Props) {
             variant: "ghost"
           },
           {
-            title: "Inventory Items",
-            href: "/inventoryItems",
-            icon: ShoppingCart,
-            variant: "ghost"
-          },
-          {
             title: "Settings",
             href: "/settings",
             icon: Settings,
             variant: "ghost"
           },
           {
-            title: "Report",
-            href: "/report",
-            icon: ReceiptIcon,
+            title: "New Branch",
+            href: "/new-branch",
+            icon: Building,
+            variant: "ghost"
+          },
+          {
+            title: "PoS",
+            href: "/pos",
+            icon: Calculator,
             variant: "ghost"
           }
+
         ]}
       />
     </div>
