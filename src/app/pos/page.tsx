@@ -119,6 +119,7 @@ const cardData: CardProps[] = [
 
 export default function Home() {
   return (
+    
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Point of Sales" />
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -128,7 +129,6 @@ export default function Home() {
         <CardContent className="lg:col-span-2">
           <section>
             <p className="p-4 font-semibold" >Recent Sales</p>
-            <SubNav/>
             <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {cardData.map((d, i) => (
                 <Card
