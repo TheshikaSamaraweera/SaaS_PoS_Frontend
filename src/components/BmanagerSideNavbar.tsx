@@ -13,7 +13,12 @@ import {
   Settings,
   ChevronRight,
   Building,
-  Calculator
+  Calculator,
+  UserPlus,
+  ClipboardList,
+  File,
+
+  
 } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -70,15 +75,27 @@ export default function SideNavbar({}: Props) {
             variant: "ghost"
           },
           {
-            title: "New Branch",
+            title: "New User",
             href: "/new-branch",
-            icon: Building,
+            icon: UserPlus,
             variant: "ghost"
           },
           {
             title: "PoS",
             href: "/pos",
             icon: Calculator,
+            variant: "ghost"
+          },
+          {
+            title: "Items",
+            href: "/inventoryItems",
+            icon: ClipboardList,
+            variant: "ghost"
+          },
+          {
+            title: "Report",
+            href: "/report",
+            icon: File,
             variant: "ghost"
           }
 
