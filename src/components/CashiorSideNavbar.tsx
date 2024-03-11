@@ -17,6 +17,7 @@ import {
   UserPlus,
   ClipboardList,
   File,
+  PackagePlus,
 
   
 } from "lucide-react";
@@ -52,20 +53,38 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            href: "/",
+            href: "/cashier/dashboard",
             icon: LayoutDashboard,
             variant: "default"
           },
           {
-            title: "Users",
-            href: "/users",
+            title: "PoS",
+            href: "/cashier/pos",
+            icon: Calculator,
+            variant: "ghost"
+          },
+          {
+            title: "Store",
+            href: "/cashier/store",
+            icon: ClipboardList,
+            variant: "ghost"
+          },
+          {
+            title: "Item List",
+            href: "/cashier/itemlist",
             icon: UsersRound,
             variant: "ghost"
           },
           {
-            title: "Ordrs",
-            href: "/orders",
-            icon: ShoppingCart,
+            title: "Add New Item",
+            href: "/cashier/addnewitem",
+            icon: PackagePlus,
+            variant: "ghost"
+          },
+          {
+            title: "Report",
+            href: "/cashier/report",
+            icon: File,
             variant: "ghost"
           },
           {
@@ -74,30 +93,6 @@ export default function SideNavbar({}: Props) {
             icon: Settings,
             variant: "ghost"
           },
-          {
-            title: "New User",
-            href: "/new-branch",
-            icon: UserPlus,
-            variant: "ghost"
-          },
-          {
-            title: "PoS",
-            href: "/pos",
-            icon: Calculator,
-            variant: "ghost"
-          },
-          {
-            title: "Items",
-            href: "/inventoryItems",
-            icon: ClipboardList,
-            variant: "ghost"
-          },
-          {
-            title: "Report",
-            href: "/report",
-            icon: File,
-            variant: "ghost"
-          }
 
         ]}
       />
