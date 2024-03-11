@@ -69,7 +69,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-5  w-full">
         
-      <PageTitle title="Inventory Items" />
+      <PageTitle title="Manager Inventory Items" />
       <Button style={{ width: "200px" }}>Add new Items</Button>
       <section className="grid w-full grid-cols-1 gap-4 gap-x-8 transition-all sm:grid-cols-2 xl:grid-cols-4">
         {cardData.map((d, i) => (

@@ -80,7 +80,7 @@ export default function TableDemo() {
             {invoices.map((invoice, index) => (
               <TableRow
                 key={invoice.invoice}
-                className={index % 2 === 0 ? "bg-blue-100" : "bg-blue-200"}
+                className={index % 2 === 0 ? "black-100" : "black-200"}
               >
                 <TableCell className="font-medium">{invoice.invoice}</TableCell>
                 <TableCell>{invoice.paymentStatus}</TableCell>
