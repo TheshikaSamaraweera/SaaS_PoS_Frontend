@@ -52,43 +52,12 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            href: "/",
-            icon: LayoutDashboard,
-            variant: "default"
-          },
-          {
-            title: "Users",
-            href: "/users",
-            icon: UsersRound,
-            variant: "ghost"
-          },
-          {
-            title: "Ordrs",
-            href: "/orders",
-            icon: ShoppingCart,
-            variant: "ghost"
-          },
-          {
-            title: "Settings",
-            href: "/settings",
-            icon: Settings,
-            variant: "ghost"
-          },
-          {
-            title: "New User",
-            href: "/new-branch",
-            icon: UserPlus,
-            variant: "ghost"
-          },
-          {
-            title: "PoS",
-            href: "/pos",
+
             icon: Calculator,
             variant: "ghost"
           },
           {
-            title: "Items",
-            href: "/inventoryItems",
+
             icon: ClipboardList,
             variant: "ghost"
           },
@@ -97,7 +66,7 @@ export default function SideNavbar({}: Props) {
             href: "/report",
             icon: File,
             variant: "ghost"
-          }
+
 
         ]}
       />
