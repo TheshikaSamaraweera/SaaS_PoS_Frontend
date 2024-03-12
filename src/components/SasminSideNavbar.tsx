@@ -52,43 +52,20 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            href: "/",
+            href: "/superAdmin/dashboard",
             icon: LayoutDashboard,
             variant: "default"
           },
+                    
           {
-            title: "Users",
-            href: "/users",
-            icon: UsersRound,
-            variant: "ghost"
-          },
-          {
-            title: "Ordrs",
-            href: "/orders",
-            icon: ShoppingCart,
-            variant: "ghost"
-          },
-          {
-            title: "Settings",
-            href: "/settings",
-            icon: Settings,
-            variant: "ghost"
-          },
-          {
-            title: "New User",
-            href: "/new-branch",
-            icon: UserPlus,
-            variant: "ghost"
-          },
-          {
-            title: "PoS",
-            href: "/pos",
+            title: "Branches",
+            href: "/superAdmin/branchManagement",
             icon: Calculator,
             variant: "ghost"
           },
           {
-            title: "Items",
-            href: "/inventoryItems",
+            title: "Managers",
+            href: "/superAdmin/managerManagement",
             icon: ClipboardList,
             variant: "ghost"
           },
@@ -97,7 +74,13 @@ export default function SideNavbar({}: Props) {
             href: "/report",
             icon: File,
             variant: "ghost"
-          }
+          },
+          {
+            title: "Settings",
+            href: "/settings",
+            icon: Settings,
+            variant: "ghost"
+          },
 
         ]}
       />
