@@ -6,7 +6,7 @@ import "./globals.css";
 import { cn } from "../lib/utils";
 import SideNavbar from "@/components/CashiorSideNavbar";
 import CashiorSideNavbar from "@/components/CashiorSideNavbar";
-import ManagerSideNavbar from "@/components/ManagerSideNavbar";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
-        <CashiorSideNavbar/>
+
         {/* main page */}
         <div className="p-8 w-full">{children}</div>
       </body>
