@@ -17,6 +17,7 @@ import {
   UserPlus,
   ClipboardList,
   File,
+  PackagePlus,
 
   
 } from "lucide-react";
@@ -52,7 +53,7 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-
+            href: "/cashier/dashboard",
             icon: LayoutDashboard,
             variant: "default"
           },

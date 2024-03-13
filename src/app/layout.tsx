@@ -33,14 +33,10 @@ export default function RootLayout({
       >
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
-<<<<<<< Updated upstream
-
-=======
         <CashiorSideNavbar/>
         {/* <SasminSideNavbar/> */}
         {/* <ManagerSideNavbar/> */}
      
->>>>>>> Stashed changes
         {/* main page */}
         <div className="p-8 w-full">{children}</div>
       </body>
