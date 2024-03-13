@@ -1,12 +1,23 @@
 /** @format */
+"use client";
 
 import PageTitle from "@/components/PageTitle";
 import Image from "next/image";
-import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
+import {
+  DollarSign,
+  Users,
+  CreditCard,
+  Activity,
+  ChevronRightIcon,
+} from "lucide-react";
 import Card, { CardContent, CardProps } from "@/components/Card";
 import BarChart from "@/components/BarChart";
 import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { SubNav } from "./sub-nav";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { any, string } from "zod";
 
 const cardData: CardProps[] = [
   {
@@ -90,11 +101,151 @@ const cardData: CardProps[] = [
 ];
 
 export default function Home() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleButtonClick = (value: any) => {
+    if (value === "=") {
+      try {
+        setInputValue(eval(inputValue).toString());
+      } catch (error) {
+        setInputValue("Error");
+      }
+    } else if (value === "C") {
+      setInputValue("");
+    } else if (value === "←") {
+      setInputValue(inputValue.slice(0, -1));
+    } else {
+      setInputValue(inputValue + value);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Point of Sales" />
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <CardContent className="lg:col-span-1">
+          <CardContent>
+            <section className="flex flex-col items-center">
+              <section className="flex flex-col items-center p-10">
+                <Input type="text" value={inputValue} readOnly />
+              </section>
+              <section className="grid grid-cols-4 gap-4 lg:grid-cols-4 pb-10">
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("7")}
+                >
+                  7
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("8")}
+                >
+                  8
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("9")}
+                >
+                  9
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("+")}
+                >
+                  +
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("4")}
+                >
+                  4
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("5")}
+                >
+                  5
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("6")}
+                >
+                  6
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("*")}
+                >
+                  *
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("1")}
+                >
+                  1
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("2")}
+                >
+                  2
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("3")}
+                >
+                  3
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("-")}
+                >
+                  -
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("0")}
+                >
+                  0
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("00")}
+                >
+                  00
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick(".")}
+                >
+                  .
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("/")}
+                >
+                  /
+                </Button>
+
+                <Button variant="secondary" onClick={() => setInputValue("")}>
+                  C
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => handleButtonClick("←")}
+                >
+                  ←
+                </Button>
+                <Button
+                  variant="secondary"
+                  className="col-span-2"
+                  onClick={() => handleButtonClick("=")}
+                >
+                  =
+                </Button>
+              </section>
+            </section>
+          </CardContent>
         </CardContent>
         <CardContent className="lg:col-span-2">
           <section>

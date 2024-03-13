@@ -1,15 +1,17 @@
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
+import { CardContent } from "@/components/Card";
 
 export function SubNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   return (
+    <CardContent className="mb-5">
     <nav
       className={cn(
-        "flex items-center space-x-4 lg:space-x-6 bg-gray-100 p-5 m-3",
+        "grid grid-cols-2 gap-4 lg:grid-cols-4 lg:space-x-6 ",
         className
       )}
       {...props}
@@ -39,5 +41,6 @@ export function SubNav({
         Stationary
       </Link>
     </nav>
+    </CardContent>
   );
 }
