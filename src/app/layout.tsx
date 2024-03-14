@@ -36,9 +36,15 @@ export default function RootLayout({
       >
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
+
+        <CashiorSideNavbar/>
+        {/* <SasminSideNavbar/> */}
+        {/* <ManagerSideNavbar/> */}
+
         {/* <CashiorSideNavbar/> */}
         {/* <SasminSideNavbar/> */}
-        <ManagerSideNavbar/>
+       
+
      
         {/* main page */}
         <div className="p-8 w-full">{children}</div>

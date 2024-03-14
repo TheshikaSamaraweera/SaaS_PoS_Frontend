@@ -53,7 +53,6 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            
             href: "/cashier/dashboard",
             icon: LayoutDashboard,
             variant: "default"
