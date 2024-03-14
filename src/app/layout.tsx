@@ -6,6 +6,9 @@ import "./globals.css";
 import { cn } from "../lib/utils";
 import SideNavbar from "@/components/CashiorSideNavbar";
 import CashiorSideNavbar from "@/components/CashiorSideNavbar";
+import BmanagerSideNavbar from "@/components/BmanagerSideNavbar";
+import SasminSideNavbar from "@/components/SasminSideNavbar";
+import ManagerSideNavbar from "@/components/ManagerSideNavbar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,9 +36,15 @@ export default function RootLayout({
       >
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
+
         <CashiorSideNavbar/>
         {/* <SasminSideNavbar/> */}
         {/* <ManagerSideNavbar/> */}
+
+        {/* <CashiorSideNavbar/> */}
+        {/* <SasminSideNavbar/> */}
+       
+
      
         {/* main page */}
         <div className="p-8 w-full">{children}</div>

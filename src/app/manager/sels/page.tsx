@@ -11,16 +11,24 @@ import { DataTable } from "@/components/DataTable";
 import { ColumnDef } from "@tanstack/react-table";
 import React from "react";
 import PageTitle from "@/components/PageTitle";
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 type Payment = {
   name: string;
   email: string;
-  lastOrder: string;
-  method: string;
+  sells: string;
+  branch: string;
+  id: string;
+  
 };
 
 const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "id",
+    header: "Id"
+  },
   {
     accessorKey: "name",
     header: "Name",
@@ -44,113 +52,138 @@ const columns: ColumnDef<Payment>[] = [
     header: "Email"
   },
   {
-    accessorKey: "lastOrder",
-    header: "Last Order"
+    accessorKey: "sells",
+    header: "Sells"
   },
   {
-    accessorKey: "method",
-    header: "Method"
+    accessorKey: "branch",
+    header: "Branch"
+  },
+  {
+    accessorKey: "action", // New action column
+    header: "Action",
+    cell: ({ row }) => (
+      <button onClick={() => handleAction(row.original)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    )
   }
 ];
+
 
 const data: Payment[] = [
   {
     name: "John Doe",
     email: "john@example.com",
-    lastOrder: "2023-01-01",
-    method: "Credit Card"
+    sells: "2023",
+    branch: "kagalla",
+    id: "1",
+    
   },
   {
     name: "Alice Smith",
     email: "alice@example.com",
-    lastOrder: "2023-02-15",
-    method: "PayPal"
+    sells: "20235",
+    branch: "kurunegala",
+    id: "2",
   },
   {
     name: "Bob Johnson",
     email: "bob@example.com",
-    lastOrder: "2023-03-20",
-    method: "Stripe"
+    sells: "4582",
+    branch: "kurunegala",
+    id: "3",
   },
   {
     name: "Emma Brown",
     email: "emma@example.com",
-    lastOrder: "2023-04-10",
-    method: "Venmo"
+    sells: "2040",
+    branch: "kurunegala",
+    id: "4",
   },
   {
     name: "Michael Davis",
     email: "michael@example.com",
-    lastOrder: "2023-05-05",
-    method: "Cash"
+    sells: "255",
+    branch: "kurunegala",
+    id: "5",
   },
   {
     name: "Sophia Wilson",
     email: "sophia@example.com",
-    lastOrder: "2023-06-18",
-    method: "Bank Transfer"
+    sells: "4588",
+    branch: "kurunegala Transfer",
+    id: "6",
   },
   {
     name: "Liam Garcia",
     email: "liam@example.com",
-    lastOrder: "2023-07-22",
-    method: "Payoneer"
+    sells: "7592",
+    branch: "kurunegala",
+    id: "7",
   },
   {
     name: "Olivia Martinez",
     email: "olivia@example.com",
-    lastOrder: "2023-08-30",
-    method: "Apple Pay"
+    sells: "4580",
+    branch: "kurunegala Pay",
+    id: "8",
   },
   {
     name: "Noah Rodriguez",
     email: "noah@example.com",
-    lastOrder: "2023-09-12",
-    method: "Google Pay"
+    sells: "4582",
+    branch: "kurunegala Pay",
+    id: "9",
   },
   {
     name: "Ava Lopez",
     email: "ava@example.com",
-    lastOrder: "2023-10-25",
-    method: "Cryptocurrency"
+    sells: "455",
+    branch: "kurunegala",
+    id: "10",
   },
   {
     name: "Elijah Hernandez",
     email: "elijah@example.com",
-    lastOrder: "2023-11-05",
-    method: "Alipay"
+    sells: "2055",
+    branch: "kurunegala",
+    id: "11",
   },
   {
     name: "Mia Gonzalez",
     email: "mia@example.com",
-    lastOrder: "2023-12-08",
-    method: "WeChat Pay"
+    sells: "205",
+    branch: "kurunegala Pay",
+    id: "12",
   },
-  {
-    name: "James Perez",
-    email: "james@example.com",
-    lastOrder: "2024-01-18",
-    method: "Square Cash"
-  },
-  {
-    name: "Charlotte Carter",
-    email: "charlotte@example.com",
-    lastOrder: "2024-02-22",
-    method: "Zelle"
-  },
-  {
-    name: "Benjamin Taylor",
-    email: "benjamin@example.com",
-    lastOrder: "2024-03-30",
-    method: "Stripe"
-  }
+  
 ];
 
 export default function UsersPage({}: Props) {
   return (
     <div className="flex flex-col gap-5  w-full">
-      <PageTitle title="Users" />
+
+      <PageTitle title="Sells" />
+      
       <DataTable columns={columns} data={data} />
     </div>
   );
 }
+function handleAction(original: Payment): void {
+  throw new Error("Function not implemented.");
+}
+

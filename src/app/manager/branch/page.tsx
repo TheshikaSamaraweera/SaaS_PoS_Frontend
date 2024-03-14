@@ -22,54 +22,25 @@ import {
 import PageTitle from "@/components/PageTitle";
 import { CardContent } from "@/components/Card";
 
-const formSchema = z
-  .object({
-    emailAddress: z.string().email(),
-    password: z.string().min(3),
-    passwordConfirm: z.string(),
-    accountType: z.enum(["personal", "company"]),
-    companyName: z.string().optional(),
-    firstName: z.string(),
-    lastName: z.string(),
-    nicNumber: z.string(),
-  })
-  .refine(
-    (data) => {
-      return data.password === data.passwordConfirm;
-    },
-    {
-      message: "Passwords do not match",
-      path: ["passwordConfirm"],
-    }
-  )
-  .refine(
-    (data) => {
-      if (data.accountType === "company") {
-        return !!data.companyName;
-      }
-      return true;
-    },
-    {
-      message: "Company name is required",
-      path: ["companyName"],
-    }
-  );
+const formSchema = z.object({
+  name: z.string(),
+  email: z.string(),
+  dob: z.number(),
+  address: z.string(),
+  
+});
 
 export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      emailAddress: "",
-      password: "",
-      passwordConfirm: "",
-      companyName: "",
-      firstName: "",
-      lastName: "",
-      nicNumber: "",
+      name: "",
+      email: "",
+      dob: 0,
+      address: "",
+      
     },
   });
-
-  const accountType = form.watch("accountType");
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     console.log({ values });
@@ -77,7 +48,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-5 w-full">
-      <PageTitle title="Add new user" />
+      <PageTitle title="Add Branch Manager" />
       <section>
         <main className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <CardContent className="lg:col-span-1 flex items-center justify-center">
@@ -101,13 +72,13 @@ export default function Home() {
               >
                 <FormField
                   control={form.control}
-                  name="firstName"
+                  name="name"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel className="font-bold" >Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="First Name" {...field} />
+                          <Input placeholder="your Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -116,13 +87,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="lastName"
+                  name="email"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel className="font-bold" >Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="Last Name" {...field} />
+                          <Input placeholder="your Email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -131,13 +102,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="nicNumber"
+                  name="dob"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>NIC Number</FormLabel>
+                        <FormLabel className="font-bold" >DoB</FormLabel>
                         <FormControl>
-                          <Input placeholder="NIC Number" {...field} />
+                          <Input placeholder="Date of Birth" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -146,62 +117,21 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="emailAddress"
+                  name="address"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel>Email address</FormLabel>
+                        <FormLabel className="font-bold" >Address</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Email address"
-                            type="email"
-                            {...field}
-                          />
+                          <Input placeholder="your Address" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     );
                   }}
                 />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Password"
-                            type="password"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="passwordConfirm"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Password confirm</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Password confirm"
-                            type="password"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <Button type="submit" className="w-full">
+                
+                <Button type="submit" className="w-full font-bold">
                   Submit
                 </Button>
               </form>

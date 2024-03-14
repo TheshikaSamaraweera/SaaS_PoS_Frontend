@@ -88,12 +88,7 @@ export default function SideNavbar({}: Props) {
             icon: File,
             variant: "ghost"
           },
-          {
-            title: "Settings",
-            href: "/settings",
-            icon: Settings,
-            variant: "ghost"
-          },
+          
 
 
         ]}

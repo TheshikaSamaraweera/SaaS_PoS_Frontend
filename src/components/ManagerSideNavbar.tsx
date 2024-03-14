@@ -17,6 +17,9 @@ import {
   UserPlus,
   ClipboardList,
   File,
+  Warehouse,
+  LineChart,
+  PackagePlus,
 
   
 } from "lucide-react";
@@ -70,7 +73,24 @@ export default function SideNavbar({}: Props) {
             icon: ClipboardList,
             variant: "ghost"
           },
-          
+          {
+            title: "Add Branch",
+            href: "/manager/branch",
+            icon: PackagePlus,
+            variant: "ghost"
+          },
+          {
+            title: "Branch",
+            href: "/manager/bmanagers",
+            icon: Warehouse,
+            variant: "ghost"
+          },
+          {
+            title: "Sells",
+            href: "/manager/sels",
+            icon: LineChart,
+            variant: "ghost"
+          },
 
         ]}
       />
