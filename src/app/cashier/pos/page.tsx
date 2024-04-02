@@ -19,88 +19,53 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { any, string } from "zod";
 
-const cardData: CardProps[] = [
-  {
-    label: "Chocolate Fingers",
-    amount: "Rs. 380.00",
-    discription: "A delicious and timeless Sri Lankan favourite",
-    icon: DollarSign,
-  },
-  {
-    label: "Mentos Mint",
-    amount: "Rs. 100.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Users,
-  },
-  {
-    label: "Lemon Puff",
-    amount: "Rs. 130.00",
-    discription: "Chocolate biscuits filled with delicious chocolate cream",
-    icon: CreditCard,
-  },
-  {
-    label: "Magic Treats",
-    amount: "Rs. 290.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Activity,
-  },
-  {
-    label: "Jumbo Peanut",
-    amount: "Rs. 420.00",
-    discription: "A delicious and timeless Sri Lankan favourite",
-    icon: Users,
-  },
-  {
-    label: "Cream Cracker",
-    amount: "Rs. 480.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: CreditCard,
-  },
-  {
-    label: "Chocolate Cream",
-    amount: "Rs. 405.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Activity,
-  },
-  {
-    label: "Tikiri Marie",
-    amount: "Rs. 330.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Users,
-  },
-  {
-    label: "Sun Cracker",
-    amount: "Rs. 110.00",
-    discription: "A delicious and timeless Sri Lankan favourite",
-    icon: CreditCard,
-  },
-  {
-    label: "Magic Treats",
-    amount: "Rs. 290.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Activity,
-  },
-  {
-    label: "Mentos Mint",
-    amount: "Rs. 100.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Users,
-  },
-  {
-    label: "Jumbo Peanut",
-    amount: "Rs. 420.00",
-    discription: "A delicious and timeless Sri Lankan favourite",
-    icon: CreditCard,
-  },
-  {
-    label: "Cream Cracker",
-    amount: "Rs. 480.00",
-    discription: "Crispy, crunchy texture with No artificial flavours",
-    icon: Activity,
-  },
-];
+const cardData: { [key: string]: CardProps[] } = {
+  snacks: [
+    // Dog card items...
+    {
+      label: "Magic Treats",
+      amount: "Rs. 290.00",
+      discription: "Crispy, crunchy texture with No artificial flavours",
+      icon: Activity,
+    },
+  ],
+  babyProducts: [
+    // Cat card items...
+    {
+      label: "Sun Cracker",
+      amount: "Rs. 110.00",
+      discription: "A delicious and timeless Sri Lankan favourite",
+      icon: CreditCard,
+    },
+  ],
+  fashion: [
+    // Fix typo here
+    // Bird card items...
+    {
+      label: "Chocolate Cream",
+      amount: "Rs. 405.00",
+      discription: "Crispy, crunchy texture with No artificial flavours",
+      icon: Activity,
+    },
+  ],
+  stationary: [
+    // Fish card items...
+    {
+      label: "Tikiri Marie",
+      amount: "Rs. 330.00",
+      discription: "Crispy, crunchy texture with No artificial flavours",
+      icon: Users,
+    },
+  ],
+};
 
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState("snacks");
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
   const [inputValue, setInputValue] = useState("");
 
   const handleButtonClick = (value: any) => {
@@ -249,9 +214,9 @@ export default function Home() {
         </CardContent>
         <CardContent className="lg:col-span-2">
           <section>
-            <SubNav />
+            <SubNav handleCategoryChange={handleCategoryChange} />
             <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {cardData.map((d, i) => (
+              {cardData[selectedCategory].map((d, i) => (
                 <Card
                   key={i}
                   amount={d.amount}
