@@ -49,7 +49,7 @@ export default function Home() {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('http://localhost:3002/book', values);
+      const response = await axios.post('http://localhost:3000/branches', values);
       console.log('Book created:', response.data);
     } catch (error) {
       console.error('Error creating book:', error);
