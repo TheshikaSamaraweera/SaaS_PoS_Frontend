@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import PageTitle from "@/components/PageTitle";
 import { CardContent } from "@/components/Card";
-import axios from 'axios';
+import axios from "axios";
 
 const formSchema = z.object({
   itemName: z.string(),
@@ -31,6 +31,8 @@ const formSchema = z.object({
   date: z.string(),
   unitPrice: z.string(),
   sellPrice: z.string(),
+  description: z.string(),
+  category: z.string(),
 });
 
 export default function Home() {
@@ -44,15 +46,20 @@ export default function Home() {
       date: "",
       unitPrice: "",
       sellPrice: "",
+      description: "",
+      category: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('http://localhost:3000/branches', values);
-      console.log('Book created:', response.data);
+      const response = await axios.post(
+        "http://localhost:3000/inventories",
+        values
+      );
+      console.log("Inventory created:", response.data);
     } catch (error) {
-      console.error('Error creating book:', error);
+      console.error("Error creating inventory:", error);
     }
   };
 
@@ -86,7 +93,7 @@ export default function Home() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Item Name</FormLabel>
+                        <FormLabel className="font-bold">Item Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Item Name" {...field} />
                         </FormControl>
@@ -101,7 +108,7 @@ export default function Home() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Item Code</FormLabel>
+                        <FormLabel className="font-bold">Item Code</FormLabel>
                         <FormControl>
                           <Input placeholder="Item Code" {...field} />
                         </FormControl>
@@ -116,7 +123,7 @@ export default function Home() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Quantity</FormLabel>
+                        <FormLabel className="font-bold">Quantity</FormLabel>
                         <FormControl>
                           <Input placeholder="Quantity" {...field} />
                         </FormControl>
@@ -131,7 +138,7 @@ export default function Home() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Supply</FormLabel>
+                        <FormLabel className="font-bold">Supply</FormLabel>
                         <FormControl>
                           <Input placeholder="Supply" {...field} />
                         </FormControl>
@@ -146,7 +153,7 @@ export default function Home() {
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Date</FormLabel>
+                        <FormLabel className="font-bold">Date</FormLabel>
                         <FormControl>
                           <Input placeholder="Date" {...field} />
                         </FormControl>
@@ -179,6 +186,36 @@ export default function Home() {
                         <FormLabel className="font-bold">Sell Price</FormLabel>
                         <FormControl>
                           <Input placeholder="Sell Price" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Description</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Description" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Category</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Category" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

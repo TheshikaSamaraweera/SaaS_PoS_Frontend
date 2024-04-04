@@ -30,6 +30,9 @@ const formSchema = z.object({
   cashierEmail: z.string(),
   cashierAddress: z.string(),
   cashierPhone: z.string(),
+  cashierDoB: z.string(),
+  cashierGender: z.string(),
+  cashierBranch: z.string(),
 });
 
 export default function Home() {
@@ -42,12 +45,15 @@ export default function Home() {
       cashierEmail: "",
       cashierAddress: "",
       cashierPhone: "",
+      cashierDoB: "",
+      cashierGender: "",
+      cashierBranch: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('http://localhost:3000/branches', values);
+      const response = await axios.post('http://localhost:3000/cashier', values);
       console.log('Cashier added:', response.data);
     } catch (error) {
       console.error('Error creating cashier:', error);
@@ -162,6 +168,51 @@ export default function Home() {
                         <FormLabel className="font-bold">Cashier Phone Number</FormLabel>
                         <FormControl>
                           <Input placeholder="Phone Number" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="cashierDoB"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Cashier Date of Birth</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Date of Birth" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="cashierGender"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Cashier Gender</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Gender" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="cashierBranch"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Cashier Branch</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Branch" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
