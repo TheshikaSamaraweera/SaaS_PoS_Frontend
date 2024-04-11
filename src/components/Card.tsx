@@ -9,11 +9,12 @@ export type CardProps = {
   icon: LucideIcon;
   amount: string;
   discription: string;
+  onClick?: () => void;
 };
 
 export default function Card(props: CardProps) {
   return (
-    <CardContent>
+    <CardContent onClick={props.onClick}>
       <section className="flex justify-between gap-2">
         {/* label */}
         <p className="text-sm">{props.label}</p>
@@ -39,3 +40,4 @@ export function CardContent(props: React.HTMLAttributes<HTMLDivElement>) {
     />
   );
 }
+

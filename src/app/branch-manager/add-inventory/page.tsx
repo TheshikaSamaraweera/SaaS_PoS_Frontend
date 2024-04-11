@@ -54,7 +54,7 @@ export default function Home() {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/inventories",
+        "http://localhost:3000/inventory",
         values
       );
       console.log("Inventory created:", response.data);
