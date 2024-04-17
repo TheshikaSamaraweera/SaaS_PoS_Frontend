@@ -36,8 +36,13 @@ export default function RootLayout({
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
 
+<<<<<<< Updated upstream
         {/* <CashiorSideNavbar /> */}
         {/* <SasminSideNavbar/> */}
+=======
+        {/* <CashiorSideNavbar/> */}
+        <SasminSideNavbar/>
+>>>>>>> Stashed changes
         {/* <ManagerSideNavbar/> */}
         <BmanagerSideNavbar/>
         {/* <CashiorSideNavbar/> */}
