@@ -39,8 +39,8 @@ export default function RootLayout({
         {/* <CashiorSideNavbar /> */}
         {/* <SasminSideNavbar/> */}
         {/* <ManagerSideNavbar/> */}
-        {/* <BmanagerSideNavbar/> */}
-        <CashiorSideNavbar/>
+        <BmanagerSideNavbar/>
+        {/* <CashiorSideNavbar/> */}
         {/* <SasminSideNavbar/> */}
 
         {/* main page */}

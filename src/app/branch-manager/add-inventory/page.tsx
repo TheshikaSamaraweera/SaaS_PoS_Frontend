@@ -24,8 +24,8 @@ import { CardContent } from "@/components/Card";
 import axios from "axios";
 
 const formSchema = z.object({
+  itemID: z.string(),
   itemName: z.string(),
-  itemCode: z.string(),
   quantity: z.string(),
   supply: z.string(),
   date: z.string(),
@@ -39,8 +39,8 @@ export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      itemID: "",
       itemName: "",
-      itemCode: "",
       quantity: "",
       supply: "",
       date: "",
@@ -58,8 +58,10 @@ export default function Home() {
         values
       );
       console.log("Inventory created:", response.data);
+      alert(`${values.itemName} added to inventory successfully!`);
     } catch (error) {
       console.error("Error creating inventory:", error);
+      alert("Error adding item to inventory!");
     }
   };
 
@@ -89,13 +91,13 @@ export default function Home() {
               >
                 <FormField
                   control={form.control}
-                  name="itemName"
+                  name="itemID"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold">Item Name</FormLabel>
+                        <FormLabel className="font-bold">Item id</FormLabel>
                         <FormControl>
-                          <Input placeholder="Item Name" {...field} />
+                          <Input placeholder="Item Code" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -104,13 +106,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="itemCode"
+                  name="itemName"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold">Item Code</FormLabel>
+                        <FormLabel className="font-bold">Item Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Item Code" {...field} />
+                          <Input placeholder="Item Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -215,7 +217,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel className="font-bold">Category</FormLabel>
                         <FormControl>
-                          <Input placeholder="Category" {...field} />
+                          <Input placeholder="Snacks / BabyProducts / Fashion / Stationary" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

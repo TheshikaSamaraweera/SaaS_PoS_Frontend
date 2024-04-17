@@ -55,8 +55,10 @@ export default function Home() {
     try {
       const response = await axios.post('http://localhost:3000/cashier', values);
       console.log('Cashier added:', response.data);
+      alert(`${response.data.cashierFirstName} added as cashier`);
     } catch (error) {
       console.error('Error creating cashier:', error);
+      alert('Error creating cashier');
     }
   };
 

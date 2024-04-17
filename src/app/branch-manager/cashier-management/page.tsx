@@ -1,131 +1,115 @@
-/**
- * eslint-disable @next/next/no-img-element
- *
- * @format
- */
-
 /** @format */
 "use client";
 
-import { DataTable } from "@/components/DataTable";
+import React, { useEffect, useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import React from "react";
+import { useRouter } from "next/router";
+import { DataTable } from "@/components/DataTable";
 import PageTitle from "@/components/PageTitle";
 
-type Props = {};
 type Cashier = {
-  cashierID: string;
-  cashierName: string;
-  branch: string;
+  _id: string;
+  cashierId: string;
+  cashierFirstName: string;
+  cashierLastName: string;
+  cashierPhone: string;
+  cashierBranch: string;
   action: string;
 };
 
-const columns: ColumnDef<Cashier>[] = [
-  {
-    accessorKey: "cashierID",
-    header: "cashier id",
-    cell: ({ row }) => {
-      return (
-        <div className="flex gap-2 items-center">
-          <img
-            className="h-10 w-10"
-            src={`https://api.dicebear.com/7.x/lorelei/svg?seed=${row.getValue(
-              "cashierID"
-            )}`}
-            alt="user-image"
-          />
-          <p>{row.getValue("cashierID")} </p>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "cashierName",
-    header: "cashier name",
-  },
-  {
-    accessorKey: "branch",
-    header: "branch",
-  },
-  {
-    accessorKey: 'action',
-    header: 'action',
-    cell: ({ row }) => (
-      <div className="flex gap-2">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
-          onClick={() => {
-            // Handle the edit action
-            console.log('Edit:', row.original);
-          }}
-        >
-          EDIT
-        </button>
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-          onClick={() => {
-            // Handle the delete action
-            console.log('Delete:', row.original);
-          }}
-        >
-          DELETE
-        </button>
-      </div>
-    ),
-  },
-  
-];
-
-const data: Cashier[] = [
-  {
-    cashierID: "001",
-    cashierName: "John Doe",
-    branch: "Branch 1",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "002",
-    cashierName: "aMarie Doe",
-    branch: "Branch 2",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "003",
-    cashierName: "Jane Doe",
-    branch: "Branch 3",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "004",
-    cashierName: "Doe",
-    branch: "Branch 4",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "005",
-    cashierName: "John Doe",
-    branch: "Branch 5",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "006",
-    cashierName: "Marie Doe",
-    branch: "Branch 6",
-    action: "    EDIT   DELETE    ",
-  },
-  {
-    cashierID: "007",
-    cashierName: "Jane Doe",
-    branch: "Branch 7",
-    action: "    EDIT   DELETE    ",
-  },
-];
-
+type Props = {};
 export default function UsersPage({}: Props) {
+  const [cashiers, setCashiers] = useState<Cashier[]>([]);
+  const columns: ColumnDef<Cashier>[] = [
+    {
+      accessorKey: "cashierId",
+      header: "Cashier id",
+      cell: ({ row }) => {
+        return (
+          <div className="flex gap-2 items-center">
+            <img
+              className="h-10 w-10"
+              src={`https://api.dicebear.com/7.x/lorelei/svg?seed=${row.getValue(
+                "cashierId"
+              )}`}
+              alt="user-image"
+            />
+            <p>{row.getValue("cashierId")} </p>
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: "cashierFirstName",
+      header: "First name",
+    },
+    {
+      accessorKey: "cashierLastName",
+      header: "Last name",
+    },
+    {
+      accessorKey: "cashierPhone",
+      header: "Phone number",
+    },
+    {
+      accessorKey: "cashierBranch",
+      header: "Branch",
+    },
+
+    {
+      accessorKey: "action",
+      header: "action",
+      cell: ({ row }) => (
+        <div className="flex gap-2">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+            onClick={() => {
+              console.log("Edit:", row.original);
+            }}
+          >
+            EDIT
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+            onClick={async () => {
+              try {
+                const response = await fetch(
+                  `http://localhost:3000/cashier/${row.original._id}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                setCashiers(
+                  cashiers.filter(
+                    (cashier: Cashier) =>
+                      cashier.cashierId !== row.original.cashierId
+                  )
+                );
+              } catch (error) {
+                console.error("Error deleting cashier:", error);
+              }
+            }}
+          >
+            DELETE
+          </button>
+        </div>
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    fetch("http://localhost:3000/cashier")
+      .then((response) => response.json())
+      .then((data) => setCashiers(data));
+  }, []);
+
   return (
     <div className="flex flex-col gap-5  w-full">
       <PageTitle title="Stock / Store" />
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={cashiers} />
     </div>
   );
 }
