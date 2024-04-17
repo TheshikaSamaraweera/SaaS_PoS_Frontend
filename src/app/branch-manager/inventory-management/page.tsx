@@ -9,14 +9,13 @@
 
 import { DataTable } from "@/components/DataTable";
 import { ColumnDef } from "@tanstack/react-table";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PageTitle from "@/components/PageTitle";
 
 type Props = {};
-type Payment = {
+type Inventory = {
   itemID: string;
   itemName: string;
-  itemCode: string;
   quantity: number;
   supply: string;
   date: string;
@@ -24,10 +23,10 @@ type Payment = {
   sellPrice: string;
 };
 
-const columns: ColumnDef<Payment>[] = [
+const columns: ColumnDef<Inventory>[] = [
   {
     accessorKey: "itemID",
-    header: "itemID",
+    header: "Item id",
     cell: ({ row }) => {
       return (
         <div className="flex gap-2 items-center">
@@ -46,10 +45,6 @@ const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "itemName",
     header: "itemName",
-  },
-  {
-    accessorKey: "itemCode",
-    header: "itemCode",
   },
   {
     accessorKey: "quantity",
@@ -99,74 +94,17 @@ const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-const data: Payment[] = [
-  {
-    itemID: "001",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-  {
-    itemID: "002",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-  {
-    itemID: "003",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-  {
-    itemID: "004",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-  {
-    itemID: "005",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-  {
-    itemID: "006",
-    itemName: "Chocolate Fingers",
-    itemCode: "CF003",
-    quantity: 1200,
-    supply: "John Keels",
-    date: "03-04-2024",
-    unitPrice: "Rs. 3600",
-    sellPrice: "Rs. 3800",
-  },
-];
-
-export default function UsersPage({}: Props) {
+export default function UsersPage() {
+  const [inventories, setInventories] = useState<Inventory[]>([]); 
+  useEffect(() => {
+    fetch("http://localhost:3000/inventory")
+      .then((response) => response.json())
+      .then((data) => setInventories(data));
+  }, []);
   return (
     <div className="flex flex-col gap-5  w-full">
       <PageTitle title="Stock / Store" />
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={inventories} />
     </div>
   );
 }
